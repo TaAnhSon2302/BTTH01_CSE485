@@ -72,7 +72,7 @@
                                 <a href="edit_category.php?id=<?php echo $row['ma_bviet'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                             </td>
                             <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
+                            <a href="process_delete_article.php?id=<?php echo $row['ma_bviet'] ?>"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php 
