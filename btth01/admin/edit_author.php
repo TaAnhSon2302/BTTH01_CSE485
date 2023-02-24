@@ -1,3 +1,6 @@
+<?php 
+$ma_tgia = $_GET['id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,44 +46,32 @@
 
     </header>
     <main class="container mt-5 mb-5">
-        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
+    <?php include '../connect_db.php';  
+    $sql = "SELECT * from tacgia where ma_tgia ='$ma_tgia';
+    ";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    ?>
+       
         <div class="row">
             <div class="col-sm">
-                <a href="add_category.php" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tên tác giả</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php include '../connect_db.php';
-         
-         $sql = "SELECT * FROM tacgia";
-         $result = mysqli_query($conn,$sql);
- 
-         if(mysqli_num_rows($result) > 0){
-             while($row = mysqli_fetch_assoc($result)){
-          ?>
-                        <tr>
-                            <th scope="row"><?php echo $row['ma_tgia'] ?></th>
-                            <td><?php echo $row['ten_tgia'] ?></td>
-                            <td>
-                                <a href="edit_author.php?id=<?php echo $row['ma_tgia'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <?php 
-           }
-         }
-        ?>
-                    </tbody>
-                </table>
+                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin tác giả</h3>
+                <form action="process_edit_author.php" method="post">
+                <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatId">Mã tác giả</span>
+                        <input type="text" class="form-control" name="txtmatgia" readonly value="<?php echo $row['ma_tgia'] ?>">
+                    </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Thể loại</span>
+                        <input type="text" class="form-control" name="txttentgia" value = "<?php echo $row['ten_tgia'] ?>">
+                    </div>
+
+                    <div class="form-group  float-end ">
+                        <input type="submit" value="Lưu lại" class="btn btn-success">
+                        <a href="author.php" class="btn btn-warning ">Quay lại</a>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
