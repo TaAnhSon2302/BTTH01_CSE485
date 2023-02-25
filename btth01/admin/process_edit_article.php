@@ -13,7 +13,7 @@
     $sql = "UPDATE baiviet SET tieude = '$tieude', ten_bhat = '$tenbhat', ma_tloai = '$matloai', tomtat = '$tomtat', noidung = '$noidung', ma_tgia = '$matgia', ngayviet = '$ngayviet'
     WHERE ma_bviet = '$ma_bviet'";
     $result = mysqli_query($conn,$sql);
-    header('Location: category.php');
+    header('Location: article.php');
     exit();
 }
 ?>
