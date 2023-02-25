@@ -1,3 +1,28 @@
+<?php 
+  include './connect_db.php';
+    $userplaceholder ='User';
+    $passplaceholder ='Password';
+  session_start();
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $tk = $_POST['username'];
+    $mk = $_POST['password'];
+    if(empty($_POST['username']))
+    {
+     $userplaceholder ="Unvalidate username";
+    }
+    if(empty($_POST['password']))
+    {
+      $passplaceholder ="Unvalidate password";
+    }
+    $sql = "SELECT * from users where tai_khoan='$tk' and mat_khau='$mk' and quyen_han='admin'";
+    $row = mysqli_query($conn,$sql);
+    $count = mysqli_num_rows($row);
+    if($count==1)
+    {
+        header('location:admin/index.php');
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,22 +77,23 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="authentication.php" method ="POST">
+                        <form action="login.php" method ="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
-                                <input name ='user'type="text" class="form-control" placeholder="username" >
+                                <input name ='username'type="text" class="form-control" placeholder="<?php echo $userplaceholder?>" >
+                                <p class="text-danger"></p>
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
-                                <input name ='pass' type="password" class="form-control" placeholder="password" >
+                                <input name ='password' type="password" class="form-control" placeholder="<?php echo $passplaceholder?>" >
                             </div>
                             
                             <div class="row align-items-center remember">
                                 <input type="checkbox">Remember Me
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Login" class="btn float-end login_btn">
+                                <input type="submit" name="btnLogin" value="Login" class="btn float-end login_btn">
                             </div>
                         </form>
                     </div>
