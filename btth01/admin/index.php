@@ -1,3 +1,22 @@
+<?php
+include '../connect_db.php';
+if(!$_SESSION['login']) {
+    header("Location:login.php");
+}
+if($_SESSION['login'] && $_SESSION['login']!='admin') {
+    header("Location:../index.php");
+}
+?>
+<?php
+        function getCount(string $table)
+        {
+            global $conn;
+            $sql = "SELECT COUNT(*) AS so_luong FROM " . $table;
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            return $row['so_luong'];
+        }
+        ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,16 +62,6 @@
 
     </header>
     <main class="container mt-5 mb-5">
-        <?php include '../connect_db.php';
-        function getCount(string $table)
-        {
-            global $conn;
-            $sql = "SELECT COUNT(*) AS so_luong FROM " . $table;
-            $result = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_assoc($result);
-            return $row['so_luong'];
-        }
-        ?>
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm-3">
