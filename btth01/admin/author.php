@@ -44,7 +44,7 @@
     </header>
     <main class="container mt-5 mb-5">
             <div class="col-sm">
-                <a href="add_arthor.php" class="btn btn-success">Thêm mới</a>
+                <a href="add_author.php" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                     <thead>
                         <tr>
