@@ -43,6 +43,16 @@
 
     </header>
     <main class="container mt-5 mb-5">
+        <?php include '../connect_db.php';
+        function getCount(string $table)
+        {
+            global $conn;
+            $sql = "SELECT COUNT(*) AS so_luong FROM " . $table;
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            return $row['so_luong'];
+        }
+        ?>
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm-3">
@@ -53,7 +63,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            110
+                            <?= getCount("users") ?>
                         </h5>
                     </div>
                 </div>
@@ -67,7 +77,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            10
+                        <?= getCount("theloai") ?>
                         </h5>
                     </div>
                 </div>
@@ -81,7 +91,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            20
+                        <?= getCount("tacgia") ?>
                         </h5>
                     </div>
                 </div>
@@ -95,7 +105,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            110
+                        <?= getCount("baiviet") ?>
                         </h5>
                     </div>
                 </div>
