@@ -1,3 +1,6 @@
+<?php 
+$ma_tloai = $_GET['id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +31,7 @@
                         <a class="nav-link" href="../index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="category.php">Thể loại</a>
+                        <a class="nav-link" href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="author.php">Tác giả</a>
@@ -43,45 +46,52 @@
 
     </header>
     <main class="container mt-5 mb-5">
+    <?php include '../connect_db.php';  
+    $sql = "SELECT * from theloai where ma_tloai ='$ma_tloai';
+    ";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    ?>
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_category.php" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tên bài viết </th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php include '../connect_db.php';
-         
-         $sql = "SELECT * FROM baiviet";
-         $result = mysqli_query($conn,$sql);
- 
-         if(mysqli_num_rows($result) > 0){
-             while($row = mysqli_fetch_assoc($result)){
-          ?>
-                        <tr>
-                            <th scope="row"><?php echo $row['ma_bviet'] ?></th>
-                            <td><?php echo $row['tieude'] ?></td>
-                            <td>
-                                <a href="edit_article.php?id=<?php echo $row['ma_bviet'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                            <a href="process_delete_article.php?id=<?php echo $row['ma_bviet'] ?>"><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <?php 
-           }
-         }
-        ?>
-        
-                    </tbody>
-                </table>
+                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin bài viết</h3>
+                <form action="process_edit_category.php" method="post">
+                <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatId">Mã bài viết</span>
+                        <input type="text" class="form-control" name="txtmabaiviet" readonly value="<?php echo $row['ma_bviet'] ?>">
+                    </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatTitle">Tiêu đề</span>
+                        <input type="text" class="form-control" name="txttieude" value = "<?php echo $row['tieude'] ?>">
+                    </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatSong">Tên bài hát</span>
+                        <input type="text" class="form-control" name="txttenbaihat" value = "<?php echo $row['ten_bhat'] ?>">
+                    </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatSummary">Tóm tắt</span>
+                        <input type="text" class="form-control" name="txttomtat" value = "<?php echo $row['tomtat'] ?>">
+                    </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatContent">Nội dung</span>
+                        <input type="text" class="form-control" name="txtnoidung" value = "<?php echo $row['noidung'] ?>">
+                    </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatImage">hình ảnh</span>
+                        <input type="text" class="form-control" name="txthinhanh" value = "<?php echo $row['hinhanh'] ?>">
+                    </div>
+
+                    <div class="form-group  float-end ">
+                        <input type="submit" value="Lưu lại" class="btn btn-success">
+                        <a href="category.php" class="btn btn-warning ">Quay lại</a>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
@@ -89,6 +99,5 @@
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 </body>
 </html>
