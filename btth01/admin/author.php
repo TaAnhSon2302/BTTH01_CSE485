@@ -43,10 +43,8 @@
 
     </header>
     <main class="container mt-5 mb-5">
-        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
-        <div class="row">
             <div class="col-sm">
-                <a href="add_category.php" class="btn btn-success">Thêm mới</a>
+                <a href="add_arthor.php" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -72,7 +70,7 @@
                                 <a href="edit_author.php?id=<?php echo $row['ma_tgia'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                             </td>
                             <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
+                                <a href="process_delete_author.php?id=<?php echo $row['ma_tgia'] ?>"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php 
