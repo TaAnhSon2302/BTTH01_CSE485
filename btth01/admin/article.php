@@ -52,6 +52,8 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Tên bài viết </th>
+                            <th scope="col">Thể loại </th>
+                            <th scope="col">Tên tác giả </th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
@@ -59,7 +61,7 @@
                     <tbody>
                     <?php include '../connect_db.php';
          
-         $sql = "SELECT * FROM baiviet";
+         $sql = "SELECT baiviet.*,theloai.ten_tloai, tacgia.ten_tgia FROM baiviet, theloai, tacgia WHERE baiviet.ma_tgia = tacgia.ma_tgia AND baiviet.ma_tloai = theloai.ma_tloai ORDER BY baiviet.ma_bviet ASC";
          $result = mysqli_query($conn,$sql);
  
          if(mysqli_num_rows($result) > 0){
@@ -68,11 +70,13 @@
                         <tr>
                             <th scope="row"><?php echo $row['ma_bviet'] ?></th>
                             <td><?php echo $row['tieude'] ?></td>
+                            <td><?php echo $row['ten_tloai'] ?></td>
+                            <td><?php echo $row['ten_tgia'] ?></td>
                             <td>
                                 <a href="edit_article.php?id=<?php echo $row['ma_bviet'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                             </td>
                             <td>
-                            <a href="process_delete_article.php?id=<?php echo $row['ma_bviet'] ?>"><i class="fa-solid fa-trash"></i></a>
+                            <a href="process_delete_article.php?id=<?php echo $row['ma_bviet'] ?>" onclick="return confirm('Bạn có muốn xoá bài viết không?')">  <i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php 

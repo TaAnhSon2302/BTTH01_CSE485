@@ -84,7 +84,7 @@ $ma_tloai = $_GET['id'];
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatImage">hình ảnh</span>
-                        <input type="text" class="form-control" name="txthinhanh" value = "<?php echo $row['hinhanh'] ?>">
+                        <input type="file" class="form-control" name="filehinhanh" value = "<?php echo $row['hinhanh'] ?>">
                     </div>
 
                     <div class="form-group  float-end ">
