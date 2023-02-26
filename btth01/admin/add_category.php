@@ -46,6 +46,9 @@ if(!$_SESSION['login']) {
                     </li>
                     </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <a href="logout.php" class="nav-link" type="submit">Đăng xuất</a>
+                </form>
                 </div>
             </div>
         </nav>

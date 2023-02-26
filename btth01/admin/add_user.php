@@ -46,6 +46,9 @@ if(!$_SESSION['login']) {
                         <a class="nav-link active fw-bold" href="user.php">Người dùng</a>
                     </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <a href="logout.php" class="nav-link" type="submit">Đăng xuất</a>
+                </form>
                 </div>
             </div>
         </nav>
