@@ -41,6 +41,9 @@ include '../connect_db.php';
                     <li class="nav-item">
                         <a class="nav-link active fw-bold" href="article.php">Bài viết</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user.php">Người dùng</a>
+                    </li>
                 </ul>
                 </div>
             </div>
