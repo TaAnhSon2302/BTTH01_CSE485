@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
-                <div class="my-logo">
+                <div style="max-width:15%" class="my-logo">
                     <a class="navbar-brand" href="#">
                         <img src="images/logo2.png" alt="" class="img-fluid">
                     </a>
