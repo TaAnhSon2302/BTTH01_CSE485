@@ -1,5 +1,6 @@
 <?php 
 $ma_bviet = $_GET['id'];
+include '../connect_db.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +48,7 @@ $ma_bviet = $_GET['id'];
 
     </header>
     <main class="container mt-5 mb-5">
-    <?php include '../connect_db.php';  
+    <?php   
             $sql = "SELECT baiviet.*,theloai.ten_tloai, tacgia.ten_tgia FROM baiviet, theloai, tacgia WHERE baiviet.ma_tgia = tacgia.ma_tgia AND baiviet.ma_tloai = theloai.ma_tloai AND baiviet.ma_bviet = $ma_bviet;";
     $result = mysqli_query($conn, $sql);
     $article = mysqli_fetch_assoc($result);
@@ -97,7 +98,7 @@ $ma_bviet = $_GET['id'];
 
                     <div class="input-group mt-3 mb-3">
                         <span style ="padding : 0px 25px 0px 25px" class="input-group-text" id="lblAr">Tóm tắt</span>
-                        <?php include '../connect_db.php';
+                        <?php 
                             $sql = "SELECT tomtat FROM baiviet WHERE ma_bviet = $ma_bviet ";
                             $result = mysqli_query($conn,$sql);
  
