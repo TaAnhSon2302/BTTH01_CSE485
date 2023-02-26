@@ -6,6 +6,5 @@
     $sql = "UPDATE `theloai` SET `ten_tloai`='$tentheloai' WHERE ma_tloai= '$matheloai';";
     $result = mysqli_query($conn,$sql);
     header('Location: category.php');
-    exit();
 }
 ?>
