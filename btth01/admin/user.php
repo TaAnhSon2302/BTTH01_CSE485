@@ -31,13 +31,13 @@
                         <a class="nav-link " href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="author.php">Tác giả</a>
+                        <a class="nav-link" href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="article.php">Bài viết</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user.php">Người dùng</a>
+                        <a class="nav-link active fw-bold" href="user.php">Người dùng</a>
                     </li>
                 </ul>
                 </div>
@@ -46,13 +46,17 @@
 
     </header>
     <main class="container mt-5 mb-5">
+        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
+        <div class="row">
             <div class="col-sm">
-                <a href="add_author.php" class="btn btn-success">Thêm mới</a>
+                <a href="add_user.php" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Tên tác giả</th>
+                            <th scope="col">Tên tài khoản</th>
+                            <th scope="col">Mật khẩu</th>
+                            <th scope="col">Quyền hạn</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
@@ -60,20 +64,22 @@
                     <tbody>
                     <?php include '../connect_db.php';
          
-         $sql = "SELECT * FROM tacgia";
+         $sql = "SELECT * FROM users";
          $result = mysqli_query($conn,$sql);
  
          if(mysqli_num_rows($result) > 0){
              while($row = mysqli_fetch_assoc($result)){
           ?>
                         <tr>
-                            <th scope="row"><?php echo $row['ma_tgia'] ?></th>
-                            <td><?php echo $row['ten_tgia'] ?></td>
+                            <th scope="row"><?php echo $row['id_ngdung'] ?></th>
+                            <td><?php echo $row['tai_khoan'] ?></td>
+                            <td><?php echo $row['mat_khau'] ?></td>
+                            <td><?php echo $row['quyen_han'] ?></td>
                             <td>
-                                <a href="edit_author.php?id=<?php echo $row['ma_tgia'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="edit_user.php?id=<?php echo $row['id_ngdung'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                             </td>
                             <td>
-                                <a href="process_delete_author.php?id=<?php echo $row['ma_tgia'] ?>" onclick="return confirm('Bạn có muốn xoá tác giả này không?')">  <i class="fa-solid fa-trash"></i></a>
+                                <a href="process_delete_user.php?id=<?php echo $row['id_ngdung'] ?>"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php 

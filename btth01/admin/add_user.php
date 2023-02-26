@@ -31,13 +31,13 @@
                         <a class="nav-link " href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="author.php">Tác giả</a>
+                        <a class="nav-link" href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="article.php">Bài viết</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user.php">Người dùng</a>
+                        <a class="nav-link active fw-bold" href="user.php">Người dùng</a>
                     </li>
                 </ul>
                 </div>
@@ -46,42 +46,29 @@
 
     </header>
     <main class="container mt-5 mb-5">
+        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
+        <div class="row">
             <div class="col-sm">
-                <a href="add_author.php" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tên tác giả</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php include '../connect_db.php';
-         
-         $sql = "SELECT * FROM tacgia";
-         $result = mysqli_query($conn,$sql);
- 
-         if(mysqli_num_rows($result) > 0){
-             while($row = mysqli_fetch_assoc($result)){
-          ?>
-                        <tr>
-                            <th scope="row"><?php echo $row['ma_tgia'] ?></th>
-                            <td><?php echo $row['ten_tgia'] ?></td>
-                            <td>
-                                <a href="edit_author.php?id=<?php echo $row['ma_tgia'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href="process_delete_author.php?id=<?php echo $row['ma_tgia'] ?>" onclick="return confirm('Bạn có muốn xoá tác giả này không?')">  <i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <?php 
-           }
-         }
-        ?>
-                    </tbody>
-                </table>
+                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
+                <form action="process_add_user.php" method="post">
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="username">Tên tài khoản</span>
+                        <input type="text" class="form-control" name="txtusername">
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span style ="padding : 0px 26px 0px 26px"  class="input-group-text" id="userpass">Mật khẩu</span>
+                        <input type="text" class="form-control" name="txtpassword">
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span style ="padding : 0px 23px 0px 23px" class="input-group-text" id="userpass">Quyền hạn</span>
+                        <input type="text" class="form-control" name="txtquyenhan">
+                    </div>
+
+                    <div class="form-group  float-end ">
+                        <input type="submit" value="Lưu lại" class="btn btn-success">
+                        <a href="user.php" class="btn btn-warning ">Quay lại</a>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
@@ -89,5 +76,3 @@
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</body>
-</html>

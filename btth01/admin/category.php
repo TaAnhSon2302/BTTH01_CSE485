@@ -34,7 +34,10 @@
                         <a class="nav-link" href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="article.php">Bài viết</a>
+                        <a class="nav-link" href="article.php">Bài viết</a>                      
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user.php">Người dùng</a>
                     </li>
                 </ul>
                 </div>

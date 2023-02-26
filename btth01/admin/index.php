@@ -55,6 +55,9 @@ if($_SESSION['login'] && $_SESSION['login']!='admin') {
                     <li class="nav-item">
                         <a class="nav-link" href="article.php">Bài viết</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user.php">Người dùng</a>
+                    </li>
                 </ul>
                 </div>
             </div>
