@@ -1,28 +1,41 @@
 <?php 
-  include './connect_db.php';
-    $userplaceholder ='User';
-    $passplaceholder ='Password';
-  session_start();
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $tk = $_POST['username'];
-    $mk = $_POST['password'];
-    if(empty($_POST['username']))
-    {
-     $userplaceholder ="Unvalidate username";
+//   include './connect_db.php';
+//     $userplaceholder ='User';
+//     $passplaceholder ='Password';
+//   session_start();
+//   if($_SERVER['REQUEST_METHOD'] == 'POST'){
+//     $tk = $_POST['username'];
+//     $mk = $_POST['password'];
+//     if(empty($_POST['username']))
+//     {
+//      $userplaceholder ="Unvalidate username";
+//     }
+//     if(empty($_POST['password']))
+//     {
+//       $passplaceholder ="Unvalidate password";
+//     }
+//     $sql = "SELECT * from users where tai_khoan='$tk' and mat_khau='$mk' and quyen_han='admin'";
+//     $row = mysqli_query($conn,$sql);
+//     $count = mysqli_num_rows($row);
+//     if($count==1)
+//     {
+//         header('location:admin/index.php');
+//     }
+//   }
+include './connect_db.php';
+
+  if($_POST){
+    $user_name = $_POST['user_name'];
+    $user_pass = $_POST['user_pass'];
+    $sql = "SELECT * FROM users WHERE tai_khoan='$user_name' AND mat_khau ='$user_pass'";
+    $result=mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    if($row) {
+        $_SESSION['login'] = $row['quyen_han'];
+        header('Location:./admin/index.php');
     }
-    if(empty($_POST['password']))
-    {
-      $passplaceholder ="Unvalidate password";
-    }
-    $sql = "SELECT * from users where tai_khoan='$tk' and mat_khau='$mk' and quyen_han='admin'";
-    $row = mysqli_query($conn,$sql);
-    $count = mysqli_num_rows($row);
-    if($count==1)
-    {
-        header('location:admin/index.php');
-    }
-  }
-?>
+   }
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,13 +93,13 @@
                         <form action="login.php" method ="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
-                                <input name ='username'type="text" class="form-control" placeholder="<?php echo $userplaceholder?>" >
+                                <input name ="user_name" type="text" class="form-control" placeholder="User" >
                                 <p class="text-danger"></p>
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
-                                <input name ='password' type="password" class="form-control" placeholder="<?php echo $passplaceholder?>" >
+                                <input name ="user_pass" type="password" class="form-control" placeholder="Password" >
                             </div>
                             
                             <div class="row align-items-center remember">
