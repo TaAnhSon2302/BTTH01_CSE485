@@ -1,5 +1,9 @@
 <?php 
 $ma_tgia = $_GET['id'];
+include '../connect_db.php';
+if(!$_SESSION['login']) {
+    header("Location:login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +53,7 @@ $ma_tgia = $_GET['id'];
 
     </header>
     <main class="container mt-5 mb-5">
-    <?php include '../connect_db.php';  
+    <?php
     $sql = "SELECT * from tacgia where ma_tgia ='$ma_tgia';
     ";
     $result = mysqli_query($conn, $sql);

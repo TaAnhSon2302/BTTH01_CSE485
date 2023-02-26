@@ -1,5 +1,9 @@
 <?php 
 $ma_tloai = $_GET['id'];
+include '../connect_db.php';
+if(!$_SESSION['login']) {
+    header("Location:login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +53,7 @@ $ma_tloai = $_GET['id'];
 
     </header>
     <main class="container mt-5 mb-5">
-    <?php include '../connect_db.php';  
+    <?php
     $sql = "SELECT * from theloai where ma_tloai ='$ma_tloai';
     ";
     $result = mysqli_query($conn, $sql);

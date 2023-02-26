@@ -1,3 +1,9 @@
+<?php
+include '../connect_db.php';
+if(!$_SESSION['login']) {
+    header("Location:login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,8 +68,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php include '../connect_db.php';
-         
+                    <?php 
          $sql = "SELECT * FROM users";
          $result = mysqli_query($conn,$sql);
  
