@@ -59,6 +59,9 @@ if($_SESSION['login'] && $_SESSION['login']!='admin') {
                         <a class="nav-link" href="user.php">Người dùng</a>
                     </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <a href="logout.php" class="nav-link" type="submit">Đăng xuất</a>
+                </form>
                 </div>
             </div>
         </nav>

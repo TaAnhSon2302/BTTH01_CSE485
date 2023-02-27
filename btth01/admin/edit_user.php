@@ -1,5 +1,9 @@
 <?php 
 $userid = $_GET['id'];
+include '../connect_db.php';
+if(!$_SESSION['login']) {
+    header("Location:login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,13 +47,16 @@ $userid = $_GET['id'];
                         <a class="nav-link active fw-bold" href="user.php">Người dùng</a>
                     </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <a href="logout.php" class="nav-link" type="submit">Đăng xuất</a>
+                </form>
                 </div>
             </div>
         </nav>
 
     </header>
     <main class="container mt-5 mb-5">
-    <?php include '../connect_db.php';  
+    <?php  
     $sql = "SELECT * from users where id_ngdung ='$userid';
     ";
     $result = mysqli_query($conn, $sql);

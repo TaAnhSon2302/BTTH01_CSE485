@@ -1,10 +1,3 @@
-<?php 
-$ma_bviet = $_GET['id'];
-include '../connect_db.php';
-if(!$_SESSION['login']) {
-    header("Location:login.php");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,10 +29,10 @@ if(!$_SESSION['login']) {
                         <a class="nav-link" href="../index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="category.php">Thể loại</a>
+                        <a class="nav-link " href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="author.php">Tác giả</a>
+                        <a class="nav-link " href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active fw-bold" href="article.php">Bài viết</a>
@@ -48,38 +41,25 @@ if(!$_SESSION['login']) {
                         <a class="nav-link" href="user.php">Người dùng</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <a href="logout.php" class="nav-link" type="submit">Đăng xuất</a>
-                </form>
                 </div>
             </div>
         </nav>
 
     </header>
     <main class="container mt-5 mb-5">
-    <?php   
-            $sql = "SELECT baiviet.*,theloai.ten_tloai, tacgia.ten_tgia FROM baiviet, theloai, tacgia WHERE baiviet.ma_tgia = tacgia.ma_tgia AND baiviet.ma_tloai = theloai.ma_tloai AND baiviet.ma_bviet = $ma_bviet;";
-    $result = mysqli_query($conn, $sql);
-    $article = mysqli_fetch_assoc($result);
-    ?>
-        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin bài viết</h3>
-                <form action="process_edit_article.php" method="post" enctype="multipart/form-data">
-                <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblArId">Mã bài viết</span>
-                        <input type="text" class="form-control" name="txtmabaiviet" readonly value="<?php echo $article['ma_bviet'] ?>">
-                    </div>
+                <h3 class="text-center text-uppercase fw-bold">Thêm mới bài viết </h3>
+                <form action="process_add_article.php" enctype="multipart/form-data" method="post">
 
                     <div class="input-group mt-3 mb-3">
                         <span style ="padding : 0px 25px 0px 25px" class="input-group-text" id="lblArTitle">Tiêu đề</span>
-                        <input type="text" class="form-control" name="txttieude" value = "<?php echo $article['tieude'] ?>">
+                        <input type="text" class="form-control" name="txttieude" >
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblArSong">Tên bài hát</span>
-                        <input type="text" class="form-control" name="txttenbaihat" value = "<?php echo $article['ten_bhat'] ?>">
+                        <input type="text" class="form-control" name="txttenbaihat" >
                     </div>
 
                     <div class="input-group mt-3 mb-3">
@@ -95,11 +75,9 @@ if(!$_SESSION['login']) {
 
                             // Hiển thị các tùy chọn thể loại trong dropdown list
                             while ($row = mysqli_fetch_assoc($result)) {
-                                if ($article['ma_tloai'] == $row['ma_tloai']) {
+                        
                                     echo '<option value="' . $row['ma_tloai'] . '" selected>' . $row['ten_tloai'] . '</option>';
-                                } else {
-                                    echo '<option value="' . $row['ma_tloai'] . '">' . $row['ten_tloai'] . '</option>';
-                                }
+                                
                             }
                             ?>
                         </select>
@@ -107,24 +85,16 @@ if(!$_SESSION['login']) {
 
                     <div class="input-group mt-3 mb-3">
                         <span style ="padding : 0px 25px 0px 25px" class="input-group-text" id="lblAr">Tóm tắt</span>
-                        <?php 
-                            $sql = "SELECT tomtat FROM baiviet WHERE ma_bviet = $ma_bviet ";
-                            $result = mysqli_query($conn,$sql);
- 
-                            if(mysqli_num_rows($result) > 0){
-                                while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                        <textarea type="text" class="form-control" name="txttomtat" ><?php echo $article['tomtat'] ?></textarea>
-                        <?php 
-                                }
-                            }
-                        ?>
+                        <textarea type="text" class="form-control" name="txttomtat" ></textarea>
                     </div>
 
 
                     <div class="input-group mt-3 mb-3" >
                         <span style ="padding : 0px 20px 0px 20px "class="input-group-text" id="lblArContent">Nội dung</span>
-                        <textarea type="text"  class="form-control" name="txtnoidung"><?php echo $article['noidung']; ?></textarea>
+                        <div class="" id = "editor">
+                        <textarea type="text"  class="form-control" name="txtnoidung" >
+                        </textarea>
+                        </div>
                     </div>
 
                     <div class="input-group mt-3 mb-3">
@@ -137,11 +107,9 @@ if(!$_SESSION['login']) {
 
                             // Hiển thị các tùy chọn thể loại trong dropdown list
                             while ($row = mysqli_fetch_assoc($result)) {
-                                if ($article['ma_tgia'] == $row['ma_tgia']) {
+                           
                                     echo '<option value="' . $row['ma_tgia'] . '" selected>' . $row['ten_tgia'] . '</option>';
-                                } else {
-                                    echo '<option value="' . $row['ma_tgia'] . '">' . $row['ten_tgia'] . '</option>';
-                                }
+                                
                             }
                             ?>
                         </select>
@@ -149,18 +117,19 @@ if(!$_SESSION['login']) {
 
                     <div class="input-group mt-3 mb-3">
                         <span style ="padding : 0px 18px 0px 18px "class="input-group-text" id="lblArDay">Ngày viết</span>
-                        <input type="text" class="form-control" name="Y-m-d H:i:s" value="<?php echo $article['ngayviet'] ?>">
+                        <input type="datetime-local" class="form-control" id="date-input"  name="date-input" >
                     </div>
 
                     <div class="input-group mt-3 mb-3">
-                        <span style ="padding : 0px 22px 0px 22px"class="input-group-text" id="lblArImage">hình ảnh</span>
-                        <input type="file" class="form-control" id="file-upload" name="file-upload" value = "<?php echo $article['hinhanh'] ?>">
+                        <span style ="padding : 0px 22px 0px 22px"class="input-group-text" id="lblArImage">Hình ảnh</span>
+                        <input type="file" class="form-control" id="file-upload" name="file-upload" >
                     </div>
 
                     <div class="form-group  float-end ">
-                        <input type="submit" value="Lưu lại" class="btn btn-success">
+                        <input type="submit" value="Thêm" class="btn btn-success">
                         <a href="article.php" class="btn btn-warning ">Quay lại</a>
                     </div>
+                    
                 </form>
             </div>
         </div>

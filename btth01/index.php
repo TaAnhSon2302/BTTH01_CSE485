@@ -69,7 +69,7 @@
         <div class="row">
         <?php include './connect_db.php';
          
-         $sql = "SELECT tieude, hinhanh FROM baiviet ";
+         $sql = "SELECT * FROM baiviet ";
          $result = mysqli_query($conn,$sql);
  
          if(mysqli_num_rows($result) > 0){
@@ -80,7 +80,7 @@
               <img src ="<?php echo $row['hinhanh'];?>" class="card-img-top" alt = "...">
               <div class="card-body">
                <h5 class ="card-title text-center">
-                 <a href="./detail.php?tieude=<?php echo $row['tieude'];?>" class="text-decoration-none"><?php echo $row['tieude'];?></a>  
+                 <a href="./detail.php?id=<?php echo $row['ma_bviet'];?>" class="text-decoration-none"><?php echo $row['tieude'];?></a>  
               </div>
          </div>
           </div>
