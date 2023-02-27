@@ -90,6 +90,25 @@ include './connect_db.php';
                         </div>
                     </div>
                     <div class="card-body">
+                        <?php
+                         if($_POST){
+                            $user_name = $_POST['user_name'];
+                            $user_pass = $_POST['user_pass'];
+                            $sql = "SELECT * FROM users WHERE tai_khoan='$user_name' AND mat_khau ='$user_pass'";
+                            $result=mysqli_query($conn,$sql);
+                            $row = mysqli_fetch_assoc($result);
+                            if($row) {
+                                $_SESSION['login'] = $row['quyen_han'];
+                                header('Location:./admin/index.php');
+                            }
+                            else if(($user_name || $user_pass) &&($user_name|| !$user_pass) &&(!$user_name || $user_pass)  && !$row){
+                                echo '<p style="color:white;">Tên đăng nhập hoặc mật khẩu sai!</p>';
+                            }
+                            if(!$user_name|| !$user_pass){
+                                    echo '<p style="color:white;">Hãy nhập tài khoản hoặc mật khẩu </p>';
+                            }
+                           }
+                        ?>
                         <form action="login.php" method ="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
