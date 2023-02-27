@@ -51,7 +51,7 @@ include './connect_db.php';
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
-                <div class="my-logo">
+                <div style="max-width:15%" class="my-logo">
                     <a class="navbar-brand" href="#">
                         <img src="images/logo2.png" alt="" class="img-fluid">
                     </a>
@@ -62,10 +62,10 @@ include './connect_db.php';
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./">Trang chủ</a>
+                    <a style="text-transform: uppercase;" class="nav-link" aria-current="page" href="./">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link active" href="./login.php">Đăng nhập</a>
+                    <a style="text-transform: uppercase;" class="nav-link active" href="./login.php">Đăng nhập</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -83,13 +83,32 @@ include './connect_db.php';
                 <div class="card">
                     <div class="card-header">
                         <h3>Sign In</h3>
-                        <div class="d-flex justify-content-end social_icon">
+                        <div style = "margin-top:30px;" class="d-flex justify-content-end social_icon">
                             <span><i class="fab fa-facebook-square"></i></span>
                             <span><i class="fab fa-google-plus-square"></i></span>
                             <span><i class="fab fa-twitter-square"></i></span>
                         </div>
                     </div>
                     <div class="card-body">
+                        <?php
+                         if($_POST){
+                            $user_name = $_POST['user_name'];
+                            $user_pass = $_POST['user_pass'];
+                            $sql = "SELECT * FROM users WHERE tai_khoan='$user_name' AND mat_khau ='$user_pass'";
+                            $result=mysqli_query($conn,$sql);
+                            $row = mysqli_fetch_assoc($result);
+                            if($row) {
+                                $_SESSION['login'] = $row['quyen_han'];
+                                header('Location:./admin/index.php');
+                            }
+                            else if(($user_name || $user_pass) &&($user_name|| !$user_pass) &&(!$user_name || $user_pass)  && !$row){
+                                echo '<p style="color:white;">Tên đăng nhập hoặc mật khẩu sai!</p>';
+                            }
+                            if(!$user_name|| !$user_pass){
+                                    echo '<p style="color:white;">Hãy nhập tài khoản hoặc mật khẩu </p>';
+                            }
+                           }
+                        ?>
                         <form action="login.php" method ="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
