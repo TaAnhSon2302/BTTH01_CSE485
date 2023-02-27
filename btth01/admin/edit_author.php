@@ -1,5 +1,9 @@
 <?php 
 $ma_tgia = $_GET['id'];
+include '../connect_db.php';
+if(!$_SESSION['login']) {
+    header("Location:login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,13 +47,16 @@ $ma_tgia = $_GET['id'];
                         <a class="nav-link" href="user.php">Người dùng</a>
                     </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <a href="logout.php" class="nav-link" type="submit">Đăng xuất</a>
+                </form>
                 </div>
             </div>
         </nav>
 
     </header>
     <main class="container mt-5 mb-5">
-    <?php include '../connect_db.php';  
+    <?php
     $sql = "SELECT * from tacgia where ma_tgia ='$ma_tgia';
     ";
     $result = mysqli_query($conn, $sql);

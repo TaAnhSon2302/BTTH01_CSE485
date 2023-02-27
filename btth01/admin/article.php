@@ -1,3 +1,9 @@
+<?php
+include '../connect_db.php';
+if(!$_SESSION['login']) {
+    header("Location:login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +46,9 @@
                         <a class="nav-link" href="user.php">Người dùng</a>
                     </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <a href="logout.php" class="nav-link" type="submit">Đăng xuất</a>
+                </form>
                 </div>
             </div>
         </nav>
@@ -62,7 +71,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php include '../connect_db.php';
+                    <?php 
          
          $sql = "SELECT baiviet.*,theloai.ten_tloai, tacgia.ten_tgia FROM baiviet, theloai, tacgia WHERE baiviet.ma_tgia = tacgia.ma_tgia AND baiviet.ma_tloai = theloai.ma_tloai ORDER BY baiviet.ma_bviet ASC";
          $result = mysqli_query($conn,$sql);

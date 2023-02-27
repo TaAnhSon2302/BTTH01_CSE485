@@ -1,3 +1,9 @@
+<?php
+include '../connect_db.php';
+if(!$_SESSION['login']) {
+    header("Location:login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +46,9 @@
                     </li>
                     </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <a href="logout.php" class="nav-link" type="submit">Đăng xuất</a>
+                </form>
                 </div>
             </div>
         </nav>
