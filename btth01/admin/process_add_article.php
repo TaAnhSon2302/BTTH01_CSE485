@@ -1,7 +1,6 @@
 <?php
     include '../connect_db.php';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $mabviet = $_POST['txtmabaiviet'];
         $tieude= $_POST['txttieude'];
         $tenbhat= $_POST['txttenbaihat'];
         $matloai = $_POST['txttloai'];
@@ -17,8 +16,8 @@
         $moved = move_uploaded_file($temp, $path);
 
 
-        $sql = "INSERT INTO `baiviet`( `tieude`, `ten_bhat`, `ma_tloai`, `tomtat`, `noidung`, `ma_tgia`, `ngayviet`, `hinhanh`) 
-        VALUES ('$tieude', '$tenbhat', '$matloai', '$tomtat','$noidung', '$matgia', '$ngayviet', $link$hinhanh)";
+        $sql = "INSERT INTO `baiviet`(`tieude`, `ten_bhat`, `ma_tloai`, `tomtat`, `noidung`, `ma_tgia`, `ngayviet`, `hinhanh`) 
+                VALUES ('$tieude','$tenbhat','$matloai','$tomtat','$noidung','$matgia','$ngayviet','$link$hinhanh')";
         $result = mysqli_query($conn,$sql);
         header('Location: article.php');
         

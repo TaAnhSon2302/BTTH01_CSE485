@@ -121,7 +121,7 @@
                     </div>
 
                     <div class="input-group mt-3 mb-3">
-                        <span style ="padding : 0px 22px 0px 22px"class="input-group-text" id="lblArImage">hình ảnh</span>
+                        <span style ="padding : 0px 22px 0px 22px"class="input-group-text" id="lblArImage">Hình ảnh</span>
                         <input type="file" class="form-control" id="file-upload" name="file-upload" >
                     </div>
 

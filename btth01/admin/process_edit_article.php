@@ -16,8 +16,9 @@
         $path = '../images/songs/' . $_FILES['file-upload']['name'];
         $moved = move_uploaded_file($temp, $path);
 
-    $sql = "UPDATE baiviet SET `tieude` = '$tieude', `ten_bhat` = '$tenbhat', `ma_tloai` = '$matloai', `tomtat` = '$tomtat', `noidung` = '$noidung', `ma_tgia` = '$matgia',`ngayviet` ='$ngayviet'
-    WHERE ma_bviet = '$mabviet'";
+        $sql = "UPDATE baiviet SET tieude = '$tieude', ten_bhat = '$tenbhat', ma_tloai = '$matloai' , tomtat = '$tomtat',
+        noidung = '$noidung' , ma_tgia = '$matgia' , ngayviet = '$ngayviet' , hinhanh = '$link$hinhanh'
+   WHERE ma_bviet = '$mabviet' ";
     $result = mysqli_query($conn,$sql);
     header('Location: article.php');
     exit();
