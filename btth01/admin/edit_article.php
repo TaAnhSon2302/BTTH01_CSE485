@@ -66,7 +66,7 @@ if(!$_SESSION['login']) {
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin bài viết</h3>
-                <form action="process_edit_article.php" method="post">
+                <form action="process_edit_article.php" method="post" enctype="multipart/form-data">
                 <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblArId">Mã bài viết</span>
                         <input type="text" class="form-control" name="txtmabaiviet" readonly value="<?php echo $article['ma_bviet'] ?>">
@@ -124,10 +124,7 @@ if(!$_SESSION['login']) {
 
                     <div class="input-group mt-3 mb-3" >
                         <span style ="padding : 0px 20px 0px 20px "class="input-group-text" id="lblArContent">Nội dung</span>
-                        <div class="" id = "editor">
-                        <textarea type="text"  class="form-control" name="txtnoidung" value = "<?php echo $row['noidung'] ?>">
-                        </textarea>
-                        </div>
+                        <textarea type="text"  class="form-control" name="txtnoidung"><?php echo $article['noidung']; ?></textarea>
                     </div>
 
                     <div class="input-group mt-3 mb-3">
@@ -157,7 +154,7 @@ if(!$_SESSION['login']) {
 
                     <div class="input-group mt-3 mb-3">
                         <span style ="padding : 0px 22px 0px 22px"class="input-group-text" id="lblArImage">hình ảnh</span>
-                        <input type="file" class="form-control" name="file-upload" value = "<?php echo $article['hinhanh'] ?>">
+                        <input type="file" class="form-control" id="file-upload" name="file-upload" value = "<?php echo $article['hinhanh'] ?>">
                     </div>
 
                     <div class="form-group  float-end ">
