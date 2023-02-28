@@ -86,14 +86,12 @@ if(!$_SESSION['login']) {
                         <span style ="padding : 0px 24px 0px 24px" class="input-group-text" id="lblTheLoai">Thể loại</span>
                         <select class="form-select" name="txttloai" >
                             <?php
-                            // Kết nối tới database
-                            $con = mysqli_connect('localhost', 'root', '', 'btth01_cse485');
 
-                            // Lấy danh sách thể loại từ bảng theloai
+                            $con = mysqli_connect('localhost', 'root', '', 'btth01_cse485');
                             $sql = "SELECT * FROM theloai";
                             $result = mysqli_query($con, $sql);
 
-                            // Hiển thị các tùy chọn thể loại trong dropdown list
+                            //dropdown list
                             while ($row = mysqli_fetch_assoc($result)) {
                                 if ($article['ma_tloai'] == $row['ma_tloai']) {
                                     echo '<option value="' . $row['ma_tloai'] . '" selected>' . $row['ten_tloai'] . '</option>';
@@ -124,7 +122,7 @@ if(!$_SESSION['login']) {
 
                     <div class="input-group mt-3 mb-3" >
                         <span style ="padding : 0px 20px 0px 20px "class="input-group-text" id="lblArContent">Nội dung</span>
-                        <textarea type="text"  class="form-control" name="txtnoidung"><?php echo $article['noidung']; ?></textarea>
+                        <textarea  type="text"  class="form-control" name="txtnoidung"><?php echo $article['noidung']; ?></textarea>
                     </div>
 
                     <div class="input-group mt-3 mb-3">
@@ -135,7 +133,7 @@ if(!$_SESSION['login']) {
                             $sql = "SELECT * FROM tacgia";
                             $result = mysqli_query($con, $sql);
 
-                            // Hiển thị các tùy chọn thể loại trong dropdown list
+                            // dropdown list
                             while ($row = mysqli_fetch_assoc($result)) {
                                 if ($article['ma_tgia'] == $row['ma_tgia']) {
                                     echo '<option value="' . $row['ma_tgia'] . '" selected>' . $row['ten_tgia'] . '</option>';
