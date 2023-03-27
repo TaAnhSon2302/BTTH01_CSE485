@@ -66,14 +66,10 @@
                         <span style ="padding : 0px 24px 0px 24px" class="input-group-text" id="lblTheLoai">Thể loại</span>
                         <select class="form-select" name="txttloai" >
                             <?php
-                            // Kết nối tới database
                             $con = mysqli_connect('localhost', 'root', '', 'btth01_cse485');
-
-                            // Lấy danh sách thể loại từ bảng theloai
                             $sql = "SELECT * FROM theloai";
                             $result = mysqli_query($con, $sql);
-
-                            // Hiển thị các tùy chọn thể loại trong dropdown list
+                            //dropdown list
                             while ($row = mysqli_fetch_assoc($result)) {
                         
                                     echo '<option value="' . $row['ma_tloai'] . '" selected>' . $row['ten_tloai'] . '</option>';
@@ -105,7 +101,7 @@
                             $sql = "SELECT * FROM tacgia";
                             $result = mysqli_query($con, $sql);
 
-                            // Hiển thị các tùy chọn thể loại trong dropdown list
+                            //dropdown list
                             while ($row = mysqli_fetch_assoc($result)) {
                            
                                     echo '<option value="' . $row['ma_tgia'] . '" selected>' . $row['ten_tgia'] . '</option>';
